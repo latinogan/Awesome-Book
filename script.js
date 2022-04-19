@@ -7,7 +7,7 @@ var listOfName = document.querySelector('#listOfName')
 
 btnClass.addEventListener('click', () => {
     let bookid= new Date().getTime();
-   book.push({title:givenName.value, author:givenAuthor.value , id:bookid})
+   book.push({title:givenName.value, author:givenAuthor.value , id:bookid});
    if (givenAuthor.length != 0 && givenName.length != 0) {
     addBook(bookid);
     givenName.value = '';
@@ -34,7 +34,7 @@ function updateStorage() {
 }
 
 function getStorage() {
-    if (localStorage['books'] === null) {
+    if (localStorage.length === 0) {
         updateStorage();
     } else {
         book = JSON.parse(localStorage.getItem('books'));
