@@ -8,10 +8,10 @@ function updateStorage() {
 }
 
 class BookList {
-  constructor (book) {
+  constructor(book) {
     this.book = book;
   }
-  
+
   removeBook(id, c = true) {
     if (c === false) {
       return;
@@ -26,7 +26,7 @@ class BookList {
       }
     }
   }
-  
+
   addBook(obj, old = false) {
     let author;
     let name;
@@ -40,8 +40,8 @@ class BookList {
       name = givenName.value;
       id = obj;
     }
-    const createAnHTMLList = `<li id="${id}"><span>${author}</span><br><span>${name}</span><br><button class="btn2"
-        onclick="booklist.removeBook('${id}')">Remove</button><hr>`;
+    const createAnHTMLList = `<li class="nombre" id="${id}"><span>${name} by ${author} </span><br><button class="btn2"
+        onclick="booklist.removeBook('${id}')">Remove</button>`;
     listOfName.innerHTML += createAnHTMLList;
     updateStorage();
   }
@@ -69,7 +69,6 @@ function getStorage() {
     });
   }
 }
-let booklist = new BookList([]);;
+let booklist = new BookList([]);
 // removeBook('As', false);
 window.addEventListener('load', getStorage());
-
