@@ -3,13 +3,24 @@ const givenAuthor = document.querySelector('#author');
 const btnClass = document.querySelector('#Button');
 const listOfName = document.querySelector('#listOfName');
 
-function updateStorage() {
-  localStorage.setItem('books', JSON.stringify(booklist.book));
-}
-
 class BookList {
   constructor(book) {
     this.book = book;
+  }
+
+  getStorage() {
+    if (localStorage.length === 0) {
+      this.updateStorage();
+    } else {
+      this.book = JSON.parse(localStorage.getItem('books'));
+      this.book.forEach((obj) => {
+        this.addBook(obj, true);
+      });
+    }
+  }
+
+  updateStorage() {
+    localStorage.setItem('books', JSON.stringify(this.book));
   }
 
   removeBook(id, c = true) {
@@ -21,7 +32,7 @@ class BookList {
       if (this.book[bookid].id === Number(id)) {
         this.book.splice(bookid, 1);
         listOfName.removeChild(listOfName.querySelector(`[id='${id.toString()}']`));
-        updateStorage();
+        this.updateStorage();
         return;
       }
     }
@@ -43,10 +54,11 @@ class BookList {
     const createAnHTMLList = `<li class="nombre" id="${id}"><span>${name} by ${author} </span><br><button class="btn2"
         onclick="booklist.removeBook('${id}')">Remove</button>`;
     listOfName.innerHTML += createAnHTMLList;
-    updateStorage();
+    this.updateStorage();
   }
 }
 
+const booklist = new BookList([]);
 btnClass.addEventListener('click', () => {
   const bookid = new Date().getTime();
   booklist.book.push({ title: givenName.value, author: givenAuthor.value, id: bookid });
@@ -59,16 +71,5 @@ btnClass.addEventListener('click', () => {
     givenAuthor.classList.add('red');
   }
 });
-function getStorage() {
-  if (localStorage.length === 0) {
-    updateStorage();
-  } else {
-    booklist.book = JSON.parse(localStorage.getItem('books'));
-    booklist.book.forEach((obj) => {
-      booklist.addBook(obj, true);
-    });
-  }
-}
-let booklist = new BookList([]);
-// removeBook('As', false);
-window.addEventListener('load', getStorage());
+
+window.addEventListener('load', booklist.getStorage());
