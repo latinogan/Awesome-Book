@@ -14,7 +14,7 @@ btnClass.addEventListener('click', () => {
     givenAuthor.value = '';
   } else {
     givenName.classList.add('red');
-    givenauthor.classList.add('red');
+    givenAuthor.classList.add('red');
   }
 });
 
@@ -22,7 +22,7 @@ function removeBook(id) {
   for (const bookid in book) {
     if (book[bookid].id == id) {
       book.splice(bookid, 1);
-      listOfName.removeChild(listOfName.querySelector(`[id=\'${id.toString()}\']`));
+      listOfName.removeChild(listOfName.querySelector(`[id='${id.toString()}']`));
       updateStorage();
       return;
     }
