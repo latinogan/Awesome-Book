@@ -1,45 +1,66 @@
-const book =[
- { title: "lorem ipsum" ,
- author: "hector"
-},
-{ title: "lorem ipsum" ,
-author: "hector"
-},
-];
-
-
-
-
-
-
-
-
-
-
+let book =[];
 
 var givenName = document.querySelector('#name')
-var givenauthor = document.querySelector('#author')
+var givenAuthor = document.querySelector('#author')
 var btnClass = document.querySelector('#Button')
 var listOfName = document.querySelector('#listOfName')
 
 btnClass.addEventListener('click', () => {
-   book[0].author = givenauthor.value
-   book[0].title = givenName.value
-   if (book[0].author.length != 0 && book[0].title.length != 0) {
-      var createAnHTMLList = `<li class=""><div>${book[0].author}</div><div>${book[0].title}</div><button
-      onclick="removeNameFromTheList(this)">Remove</button>`
-      listOfName.innerHTML += createAnHTMLList
-      givenName.value = ''
-      givenauthor.value=""
-      givenName.classList.remove('red')
+    let bookid= new Date().getTime();
+   book.push({title:givenName.value, author:givenAuthor.value , id:bookid})
+   if (givenAuthor.length != 0 && givenName.length != 0) {
+    addBook(bookid);
+    givenName.value = '';
+    givenAuthor.value="";
    } else{
-      givenName.classList.add('red')
-      givenauthor.classList.add('red')
+    givenName.classList.add('red')
+    givenauthor.classList.add('red')
    }
-})
-function removeNameFromTheList(e) {
-   e.parentElement.remove()
+});
+
+function removeBook(id) {
+    for(let bookid in book) {
+       if(book[bookid].id == id) {
+           book.splice( bookid,1);
+           listOfName.removeChild(listOfName.querySelector("[id=\'" + id.toString() +"\']"));
+           updateStorage();
+           return;
+       }
+   }
 }
-function removeNameFromTheList(e) {
-   e.parentElement.remove()
+
+function updateStorage() {
+    localStorage.setItem("books" , JSON.stringify(book));
 }
+
+function getStorage() {
+    if (localStorage['books'] === null) {
+        updateStorage();
+    } else {
+        book = JSON.parse(localStorage.getItem('books'));
+        book.forEach((obj) => {
+            addBook(obj, old=true);
+        });
+    }
+}
+
+function addBook(obj, old=false) {
+    let author;
+    let name;
+    let id;
+    if (old === true) {
+        author = obj.author;
+        name = obj.title;
+        id = obj.id;
+    } else {
+        author = givenAuthor.value;
+        name = givenName.value;
+        id = obj;
+    }
+    var createAnHTMLList = `<li id="${id}"><span>${author}</span><br><span>${name}</span><br><button class="btn2"
+    onclick="removeBook('${id}')">Remove</button><hr>`;
+    listOfName.innerHTML += createAnHTMLList;
+    updateStorage();
+}
+
+window.addEventListener('load', getStorage());
