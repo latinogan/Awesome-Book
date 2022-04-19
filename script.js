@@ -34,14 +34,14 @@ function updateStorage() {
 }
 
 function getStorage() {
-  if (localStorage.books === null) {
-    updateStorage();
-  } else {
-    book = JSON.parse(localStorage.getItem('books'));
-    book.forEach((obj) => {
-      addBook(obj, old = true);
-    });
-  }
+    if (localStorage.length === 0) {
+        updateStorage();
+    } else {
+        book = JSON.parse(localStorage.getItem('books'));
+        book.forEach((obj) => {
+            addBook(obj, old = true);
+        });
+    }
 }
 
 function addBook(obj, old = false) {
