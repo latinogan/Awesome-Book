@@ -3,3 +3,20 @@ body {
   background-color: white;
   font-size: 100%;
 }
+.awesome h1 {
+  text-align:center ;
+}
+.books {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.books ul {
+  border: 1px solid;
+  width: 50%;
+  list-style: none;
+}
+ #listOfName li{
+   display:flex;
+   gap:7px;
+}

@@ -1,4 +1,11 @@
-let book = [];
+class book { 
+  constructor(title, author, id = null) {
+    this.title = title;
+    this.author = author;
+    id = new Date().getMilliseconds(); 
+    }
+  }
+
 
 const givenName = document.querySelector('#name');
 const givenAuthor = document.querySelector('#author');
