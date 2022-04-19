@@ -3,7 +3,8 @@
 > This is a basic website that allows users to add/remove books from a list. we archived this by using JavaScript objects and arrays. Also dynamically modifing the DOM and adding basic events.
 
 ## Built With
-
+- HTML
+- CSS
 - JavaScript
 
 ## Live Demo (if available)

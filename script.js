@@ -37,4 +37,31 @@ function addBook(obj, old = false) {
     id = obj;
   }
   const createAnHTMLList = `<li id="${id}"><span>${author}</span><br><span>${name}</span><br><button class="btn2"
-
+      onclick="removeBook('${id}')">Remove</button><hr>`;
+  listOfName.innerHTML += createAnHTMLList;
+  updateStorage();
+}
+btnClass.addEventListener('click', () => {
+  const bookid = new Date().getTime();
+  book.push({ title: givenName.value, author: givenAuthor.value, id: bookid });
+  if (givenAuthor.length !== 0 && givenName.length !== 0) {
+    addBook(bookid);
+    givenName.value = '';
+    givenAuthor.value = '';
+  } else {
+    givenName.classList.add('red');
+    givenAuthor.classList.add('red');
+  }
+});
+function getStorage() {
+  if (localStorage.length === 0) {
+    updateStorage();
+  } else {
+    book = JSON.parse(localStorage.getItem('books'));
+    book.forEach((obj) => {
+      addBook(obj, true);
+    });
+  }
+}
+removeBook('As', false);
+window.addEventListener('load', getStorage());
