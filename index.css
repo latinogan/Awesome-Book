@@ -3,3 +3,45 @@ body {
   background-color: white;
   font-size: 100%;
 }
+
+.awesome h1 {
+  text-align: center;
+}
+
+.books {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.books ul {
+  border: 3px solid;
+  width: 30%;
+  min-height: 200px;
+  list-style: none;
+  padding: 0;
+}
+
+#listOfName li {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+}
+
+.nombre:nth-child(odd) {
+  background-color: gray;
+}
+
+.inputext {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+  gap: 10px;
+}
