@@ -73,3 +73,28 @@ btnClass.addEventListener('click', () => {
 });
 
 window.addEventListener('load', booklist.getStorage());
+
+const list = document.querySelector('.library');
+const add = document.querySelector('.add_book');
+const contact = document.querySelector('.contact1');
+const links = document.querySelector('#Links');
+links.addEventListener('click', (element) => {
+  element.preventDefault();
+  const link = element.target;
+  if (link.classList.contains('list')) {
+    add.classList.remove('active');
+    contact.classList.remove('active');
+    list.classList.add('active');
+  } else if (link.classList.contains('add')) {
+    list.classList.remove('active');
+    contact.classList.remove('active');
+    add.classList.add('active');
+  } else if (link.classList.contains('contact')) {
+    list.classList.remove('active');
+    add.classList.remove('active');
+    contact.classList.add('active');
+  }
+});
+
+const dt = new Date();
+document.querySelector('.date').innerHTML = dt;
