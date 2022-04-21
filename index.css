@@ -23,8 +23,8 @@ main {
 
 .books ul {
   border: 3px solid;
-  width: 30%;
-  min-height: 200px;
+  width: 100%;
+  min-height: 304px;
   list-style: none;
   padding: 0;
 }
@@ -97,7 +97,7 @@ h3 {
   flex-direction: column;
   width: 30%;
   margin: 0 auto;
-  gap: 10px;
+  gap: 20px;
 }
 
 .library {
@@ -123,6 +123,15 @@ h3 {
   position: absolute;
   opacity: 0;
   transform: scale(0.01);
+}
+
+input#name, input#author {
+  width: -webkit-fill-available;
+  height: 21px;
+}
+
+button {
+  align-self: self-end;
 }
 
 .add_book.active {
@@ -164,4 +173,13 @@ h3 {
   margin-top: 60px;
 
   /*  padding: 0 0 0 0; */
+}
+
+.add, .contact {
+  border-left: 2px solid ;
+  padding-left: 10px;
+}
+
+#Links a:hover {
+  color: rgb(82, 82, 255);
 }
