@@ -93,7 +93,7 @@ h3 {
 .inputext {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   flex-direction: column;
   width: 30%;
   margin: 0 auto;
@@ -125,8 +125,9 @@ h3 {
   transform: scale(0.01);
 }
 
-input#name, input#author {
-  width: -webkit-fill-available;
+input#name,
+input#author {
+  width: 300px;
   height: 21px;
 }
 
@@ -175,8 +176,9 @@ button {
   /*  padding: 0 0 0 0; */
 }
 
-.add, .contact {
-  border-left: 2px solid ;
+.add,
+.contact {
+  border-left: 2px solid;
   padding-left: 10px;
 }
 
